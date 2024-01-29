@@ -1,0 +1,103 @@
+html,
+body,
+#root
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(182, 255, 255);
+}
+ 
+.contactbox {
+    display: inline-block;
+    position:absolute;
+    padding: 0 10px 10px;
+    -ms-transform:translate(-50%,-50%);
+    -webkit-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%);
+    opacity: 0.9;
+}
+
+.contact{
+    text-align:center;
+    font-family: "Ambery Garden";
+    color: #fff;
+    font-size: 1.5em;
+    margin: 0px;
+}
+
+.link {
+    padding: 0 10px 10px 10px;
+}
+  
+/* Icons */
+
+a {
+    color:#fff;
+    background: #E9C838;
+    border-color: #e99638;
+    border-width: 20px;
+    border-radius:6px;
+    text-align:center;
+    text-decoration:none;
+    position: relative;
+    display: inline-block;
+    width:80px;
+    height:50px;
+    padding-top:14px;
+    padding-bottom: 14px;
+    margin:10px;
+    -o-transition:all .5s;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+    -webkit-font-smoothing: antialiased;
+}
+
+a:hover {
+    background: #e9d738;
+}
+
+/* pop-up text */
+a span {
+    color:#666;
+    position:absolute;
+    font-family:sans-serif;
+    bottom:0px;
+    left:100px;
+    width: 110px;
+    padding:5px 8px;
+    z-index:-1;
+    font-size:28px;
+    border-radius:2px;
+    background:#fff;
+    visibility:hidden;
+    opacity:0;
+    -o-transition:all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -webkit-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -moz-transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* pop-up text arrow */
+a span:before {
+    content:'';
+    width: 0; 
+    height: 0; 
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent; 
+    border-right:7px solid #fff; 
+    position:absolute;
+    bottom:14px;
+    left:-10px;
+}
+
+/* text pops up when icon is in hover state */
+a:hover span {
+    bottom:18px;
+    left:95px;
+    visibility:visible;
+    opacity:1;
+}

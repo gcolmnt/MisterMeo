@@ -1,0 +1,84 @@
+<div style="user-select: none;
+    position: fixed; 
+    bottom: 10px; left: 
+    10px; width: 170px; 
+    height: 170px; 
+    border-radius: 50%; transition: 
+    opacity 0.3s ease 0s; 
+    will-change: opacity;
+    opacity: 1;">
+    
+    <div style="position: absolute; 
+        top: calc(50% - 30px); 
+        left: calc(50% - 30px); 
+        width: 60px; 
+        height: 60px; 
+        border: 2px solid rgb(255, 255, 255); 
+        border-radius: 50%; 
+        box-sizing: border-box; 
+        pointer-events: none; 
+        will-change: transform; 
+        transform: translateX(0px) translateY(0px);">
+    </div>
+
+    <div style="position: absolute; 
+        top: calc(50% - 75px); 
+        left: calc(50% - 75px); 
+        width: 150px; height: 150px; 
+        border: 2px solid rgb(255, 255, 255); 
+        border-radius: 50%; 
+        opacity: 0.25; 
+        pointer-events: none; 
+        box-sizing: border-box;">
+    </div>
+</div>
+
+
+/**
+ *  Trigger Management
+ */
+
+ useEffect(() => {
+    const handleKeyDown = (event) => {
+        if (action4) {
+            setIsInteracting(true);
+        }
+    };
+
+    const handleKeyUp = (event) => {
+        if (event.key === 'f') {
+            setIsInteracting(false);
+        }
+    };
+
+        window.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('keyup', handleKeyUp);
+
+    return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+        window.removeEventListener('keyup', handleKeyUp);
+    };
+}, []);
+
+useFrame((state, delta) => {
+    console.log(isInteracting)
+    if (onTrigger===true) {
+        // Player is around trigger position
+        triggerRef.current.material.color.set('blue'); // Change the color to red (or any other color)
+
+        if (isInteracting && linkOpened===false ) {
+            // Set the state to indicate that the link has been opened
+            setLinkOpened(true);
+            setTimeout(() => {
+                window.open('https://www.google.fr', '_blank');
+            }, 500);
+            ;
+    
+        }
+    }
+    else {
+        triggerRef.current.material.color.set('red'); // Change the color back to blue (or any default color)
+        setLinkOpened(false);
+    }
+    
+    })
