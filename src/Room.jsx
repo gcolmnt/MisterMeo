@@ -30,7 +30,7 @@ export default function Room()
     // })
   
     const { nodes } = useGLTF('./Room.glb')
-    const bakedTexture = useTexture('./bakeddef.jpg')
+    const bakedTexture = useTexture('./baked.png')
     bakedTexture.flipY = false
     const [ hitBoxSound ] = useState(() => new Audio('./1.wav')) 
     const [ hitSoundCouch ] = useState(() => new Audio('./rebound.mp3'))
@@ -60,6 +60,16 @@ export default function Room()
     hitboxContact.scene.children.forEach((mesh) => 
     {
         mesh.castShadow = true
+    })
+
+    const jukeboxGlass = useGLTF('./JukeboxGlass.glb')
+    const JukeboxGlass = useRef()
+    jukeboxGlass.scene.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.material.transparent = true;
+          child.material.opacity = 0.2;
+        }
     })
 
     /**
@@ -233,6 +243,17 @@ export default function Room()
 
         {/* JukeBox */}
         <CuboidCollider rotation={[ 0, -2.42, 0 ]} position={[-3.2, 1.05, -3.2]} args={[0.5, 0.95, 0.55]} />
+
+        {/* JukeboxGlass */}
+        <primitive 
+            castShadow 
+            ref={ JukeboxGlass } 
+            object={jukeboxGlass.scene} 
+            scale={ 1.3 } 
+            position={ [ 0, 0, 0] } 
+            rotation={ [ 0, 0, 0] }
+            opacity={ 0.2 }
+        />
 
         {/* Shelf */}
         <CuboidCollider position={[-3.65, 2.1, 1.15]} args={[0.25, 0.05, 1.7]} />

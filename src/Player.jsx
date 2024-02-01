@@ -41,7 +41,6 @@ export default function Player()
         }
 
         const characterPosition = playerRef.current.translation();
-        console.log(characterPosition)
     })
 
 
